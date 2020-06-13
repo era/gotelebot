@@ -18,8 +18,9 @@ import (
 
 func main() {
 	bot, _ := bot.New("1234:ABCDE") // This is your bot token, put your secrets in env variables, never into code!!
-
-	bot.AddRoute("/hello", func(m *tb.Message)string { // The first argument is the command you want to reply, second what you want to do with that command. The string returned is the message the user will receive
+	// The first argument is the command you want to reply, second what you want to do with that command.
+	// The string returned is the message the user will receive
+	bot.AddRoute("/hello", func(m *tb.Message)string {
 		return "world"
 	})
   
