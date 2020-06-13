@@ -23,8 +23,8 @@ func main() {
 	bot.AddRoute("/hello", func(m *tb.Message)string {
 		return "world"
 	})
-  
-  bot.AddRoute("/where", func(m *tb.Message)string { // add how many routes you want
+    
+        bot.AddRoute("/where", func(m *tb.Message)string { // add how many routes you want
 		return "here"
 	})
 
