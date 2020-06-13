@@ -31,3 +31,6 @@ func main() {
 }
 
 ```
+
+
+After it you just need to run `go run main.go`.
