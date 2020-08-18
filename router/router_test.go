@@ -7,7 +7,7 @@ import (
 
 func TestRouterAdd(t *testing.T) {
 	a := New()
-	myFunc := func(m *tb.Message, b *tb.Bot) {}
+	myFunc := func(m *tb.Message) string { return "nice :)" }
 	a.Add("/test", myFunc)
 
 	if a.routes["/test"] == nil {

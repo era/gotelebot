@@ -5,17 +5,17 @@ import (
 )
 
 type Router struct {
-	routes map[string]func(m *tb.Message, b *tb.Bot)
+	routes map[string]func(m *tb.Message) string
 }
 
 func New() Router {
 	return Router{
-		make(map[string]func(m *tb.Message, b *tb.Bot)),
+		make(map[string]func(m *tb.Message) string),
 	}
 }
 
 // Adds a new command -> function to bot routes
-func (r *Router) Add(command string, handler func(m *tb.Message, b *tb.Bot)) {
+func (r *Router) Add(command string, handler func(m *tb.Message) string) {
 	r.routes[command] = handler
 }
 
@@ -25,8 +25,8 @@ func (r *Router) Setup(telegramBot *tb.Bot) {
 		// Creates local copy
 		command := k
 		handler := v
-		telegramBot.Handle(command, func(m *tb.Message) {
-			handler(m, telegramBot)
+		telegramBot.Handle(command, func(msg *tb.Message) {
+			telegramBot.Send(msg.Sender, handler(msg))
 		})
 	}
 }

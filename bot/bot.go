@@ -30,9 +30,7 @@ func New(token string) (*TelegramBot, error) {
 }
 
 func (bot TelegramBot) AddRoute(command string, handler func(m *tb.Message) string) {
-	bot.router.Add(command, func(m *tb.Message, b *tb.Bot) {
-		b.Send(m.Sender, handler(m))
-	})
+	bot.router.Add(command, handler)
 }
 
 func (bot TelegramBot) Start() {
